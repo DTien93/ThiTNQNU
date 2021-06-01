@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Làm bài thi trắc nghiệm</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="panel-group">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Làm bài thi</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-12 text-right">
+              <button type="button" name="button" class="btn btn-success" id="btnStart">Bắt đầu</button>
+            </div>
+          </div>
+          <div class="row" style="margin-left: 10px;">
+              <p style="font-weight: bold;">Câu hỏi ?</p>
+              <div class="radio col-md-12">
+                <label><input type="radio" name="optradio" id="rdOptionA">Đáp án A</label>
+              </div>
+              <div class="radio col-md-12">
+                <label><input type="radio" name="optradio" id="rdOptionB">Đáp án B</label>
+              </div>
+              <div class="radio  col-md-12">
+                <label><input type="radio" name="optradio"  id="rdOptionC">Đáp án C</label>
+              </div>
+              <div class="radio col-md-12">
+                <label><input type="radio" name="optradio" id="rdOptionD">Đáp án D</label>
+              </div>
+          </div>
+          <div id="questions"> </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <button type="button" class="btn btn-warning" id="btnFinish">Kết thúc bài thi</button>
+            </div>
+          </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                <h4 id='mark' class = "text-info"></h4>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script type="text/javascript">
+    $('#btnStart').click(function(){
+            GetQuestion();
+    });
+    function GetQuestion() {
+            $.ajax({
+              url : 'questions.php',
+              type: 'get',
+              success:function(data) {
+                console.log(data);
+              }
+            });
+    }
+</script>

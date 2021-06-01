@@ -1,0 +1,26 @@
+<?php
+	session_start();
+	include('connect.php');
+	$sql = "SELECT iddethi FROM dethi where idkythi =  '".$_SESSION['idkythi']."' ";
+	$result = mysqli_query($conn, $sql);
+	if($row = mysqli_fetch_array($result)){
+		$sql1 = "SELECT * FROM cauhoidethi where iddethi = '".$row['iddethi']."'    " ;
+		$result1 = mysqli_query($conn, $sql1);
+		if($row1 = mysqli_fetch_array($result1)) {
+			$sql = $conn>prepare("SELECT * FROM thuviencauhoi where  idcauhoi = '".$row1['idcauhoi']."'  ");
+			
+		}else{
+			echo "Lỗi";
+		}
+	}else{
+		echo "Lỗi";
+		
+	}
+
+	//$sql2 = "SELECT * FROM thuviencauhoi where  idcauhoi = '".$row1['idcauhoi']."'    " ;
+	// $sql2 = $conn>prepare("SELECT * FROM thuviencauhoi where  idcauhoi = '".$row1['idcauhoi']."'  ");
+	// $sql2->execute();
+	//
+	$sql->execute();
+	echo json_encode($sql->fetchAll(PDO::FETCH_ASSOC), JSON_UNESCAPED_UNICODE);
+?>
